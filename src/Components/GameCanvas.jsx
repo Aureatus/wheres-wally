@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import wallyImage1 from "../Assets/wheres-wally-1.jpg";
 
 const GameCanvas = () => {
