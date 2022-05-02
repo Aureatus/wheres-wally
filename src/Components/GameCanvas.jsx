@@ -1,17 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import wallyImage1 from "../Assets/wheres-wally-1.jpg";
 
-const GameCanvas = () => {
+const GameCanvas = ({ drawWallyImage }) => {
+  const canvasRef = useRef(null);
+
   useEffect(() => {
-    const context = document.querySelector("#canvas").getContext("2d");
+    const context = canvasRef.current.getContext("2d");
 
     const image1 = new Image();
     image1.src = wallyImage1;
     image1.onload = () => {
-      context.drawImage(image1, 0, 0);
+      drawWallyImage(context, image1);
     };
-  }, []);
-  return <canvas id="canvas" height={1136} width={640}></canvas>;
+  }, [drawWallyImage]);
+  return <canvas ref={canvasRef} height={1136} width={640}></canvas>;
 };
 
 export default GameCanvas;
