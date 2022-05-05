@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-const GameCanvas = ({ drawWallyImage, wallyImage }) => {
+const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
   const canvasRef = useRef(null);
 
   const [mouseClickLocation, setMouseClickLocation] = useState(null);
 
   const getMouseCoordinates = (event) => {
-    const mouseX = event.nativeEvent.offsetX;
-    const mouseY = event.nativeEvent.offsetY;
+    const mouseX = event.nativeEvent.clientX;
+    const mouseY = event.nativeEvent.clientY;
     return { mouseX, mouseY };
   };
 
@@ -28,14 +28,14 @@ const GameCanvas = ({ drawWallyImage, wallyImage }) => {
 
   useEffect(() => {
     const context = canvasRef.current.getContext("2d");
-    wallyImage.onload = () => {
-      drawWallyImage(context, wallyImage);
+    wallyImage1.onload = () => {
+      drawWallyImage(context, wallyImage1);
     };
-  }, [drawWallyImage, wallyImage]);
+  }, [drawWallyImage, wallyImage1]);
 
   useEffect(() => {
     const context = canvasRef.current.getContext("2d");
-    drawWallyImage(context, wallyImage);
+    drawWallyImage(context, wallyImage1);
   });
 
   useEffect(() => {
@@ -60,7 +60,15 @@ const GameCanvas = ({ drawWallyImage, wallyImage }) => {
   } else {
     return (
       <>
-        <div>a</div>
+        <div
+          style={{
+            position: "absolute",
+            left: mouseClickLocation.mouseX - boxWidth / 2,
+            top: mouseClickLocation.mouseY - boxHeight / 2,
+          }}
+        >
+          a
+        </div>
         <canvas
           ref={canvasRef}
           height={1136}

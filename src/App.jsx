@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <header></header>
       <main>
-        <GameCanvas drawWallyImage={drawWallyImage} wallyImage={wallyImage} />
+        <GameCanvas drawWallyImage={drawWallyImage} wallyImage1={wallyImage} />
       </main>
     </div>
   );
