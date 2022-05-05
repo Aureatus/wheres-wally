@@ -62,15 +62,40 @@ const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
   } else {
     return (
       <>
-        <div
+        <img
+          src={wallyProfile}
+          alt="Wally"
+          height={50}
+          width={50}
+          style={{
+            position: "absolute",
+            left: mouseClickLocation.mouseX - boxWidth / 2 + 50,
+            top: mouseClickLocation.mouseY - boxHeight / 2,
+          }}
+        />
+        <img
+          src={wallyProfile}
+          alt="Wally"
+          height={50}
+          width={50}
+          style={{
+            position: "absolute",
+            left: mouseClickLocation.mouseX - boxWidth / 2 - 50,
+            top: mouseClickLocation.mouseY - boxHeight / 2,
+          }}
+        />
+        <img
+          src={wallyProfile}
+          alt="Wally"
+          height={50}
+          width={50}
           style={{
             position: "absolute",
             left: mouseClickLocation.mouseX - boxWidth / 2,
-            top: mouseClickLocation.mouseY - boxHeight / 2,
+            top: mouseClickLocation.mouseY - boxHeight / 2 - 50,
           }}
-        >
-          <img src={wallyProfile} alt="Wally" height={50} width={50} />
-        </div>
+        />
+
         <canvas
           ref={canvasRef}
           height={1136}
