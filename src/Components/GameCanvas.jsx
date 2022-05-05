@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+import wallyProfile from "../Assets/wallyProfile.jpg";
+
 const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
   const canvasRef = useRef(null);
 
@@ -67,7 +69,7 @@ const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
             top: mouseClickLocation.mouseY - boxHeight / 2,
           }}
         >
-          a
+          <img src={wallyProfile} alt="Wally" height={50} width={50} />
         </div>
         <canvas
           ref={canvasRef}
