@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import wallyProfile from "../Assets/wallyProfile.jpg";
+import wallyProfile from "../Assets/wally.jpg";
 
 const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
   const canvasRef = useRef(null);
@@ -51,8 +51,8 @@ const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
     return (
       <canvas
         ref={canvasRef}
-        height={1136}
-        width={640}
+        height={768}
+        width={1024}
         onClick={(event) => {
           setMouseClickLocation(getMouseCoordinates(event));
           setTargetingBoxPresent(true);
@@ -98,8 +98,8 @@ const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
 
         <canvas
           ref={canvasRef}
-          height={1136}
-          width={640}
+          height={768}
+          width={1024}
           onClick={() => {
             setTargetingBoxPresent(false);
           }}
