@@ -1,3 +1,5 @@
+import "../styles/CharacterSelect.css";
+
 const CharacterSelect = ({
   mouseClickLocation,
   boxWidth,
@@ -11,8 +13,8 @@ const CharacterSelect = ({
       className="char-select-div"
       style={{
         position: "absolute",
-        left: mouseClickLocation.mouseX - boxWidth / 2 + 50,
-        top: mouseClickLocation.mouseY - boxHeight / 2,
+        left: mouseClickLocation.mouseX - boxWidth / 2 + 70,
+        top: mouseClickLocation.mouseY - boxHeight / 2 - 50,
       }}
     >
       <div className="char-select-card" id="wally">

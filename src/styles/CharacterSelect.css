@@ -1,0 +1,27 @@
+.char-select-div {
+  background-color: white;
+
+  cursor: pointer;
+
+  border-radius: 5px;
+  box-shadow: crimson 2px 2px;
+}
+
+.char-select-card {
+  display: flex;
+
+  align-items: center;
+  text-align: center;
+
+  column-gap: 20px;
+
+  padding-right: 20px;
+  padding-left: 10px;
+
+  border-bottom: lightgray solid 1px;
+  border-radius: 5px;
+}
+
+.char-select-card p {
+  margin-block: 1em;
+}
