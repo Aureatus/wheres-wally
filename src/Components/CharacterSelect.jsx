@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import "../styles/CharacterSelect.css";
+import { appContext } from "../App";
 
 const CharacterSelect = ({
   mouseClickLocation,
@@ -8,6 +10,8 @@ const CharacterSelect = ({
   odlawProfile,
   wizardProfile,
 }) => {
+  const app = useContext(appContext);
+
   return (
     <div
       className="char-select-div"

@@ -2,6 +2,7 @@ import GameCanvas from "./Components/GameCanvas";
 import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
 
 import { initializeApp } from "firebase/app";
+import { createContext } from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyARq8iPDaAvq2ZLrYYYyVsw146hbLbpFvg",
@@ -13,6 +14,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const appContext = createContext();
 
 function App() {
   const drawWallyImage = (context, image1) => {
@@ -25,10 +27,17 @@ function App() {
     <div className="App">
       <header></header>
       <main>
-        <GameCanvas drawWallyImage={drawWallyImage} wallyImage1={wallyImage} />
+        <appContext.Provider value={app}>
+          <GameCanvas
+            drawWallyImage={drawWallyImage}
+            wallyImage1={wallyImage}
+            app={app}
+          />
+        </appContext.Provider>
       </main>
     </div>
   );
 }
 
 export default App;
+export { appContext };
