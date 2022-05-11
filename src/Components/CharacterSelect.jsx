@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import "../styles/CharacterSelect.css";
-import { appContext } from "../App";
-
+import { characterCoordinateContext } from "../App";
 const CharacterSelect = ({
   mouseClickLocation,
   boxWidth,
@@ -10,7 +9,7 @@ const CharacterSelect = ({
   odlawProfile,
   wizardProfile,
 }) => {
-  const app = useContext(appContext);
+  const characterCoordinate = useContext(characterCoordinateContext);
 
   return (
     <div

@@ -4,6 +4,8 @@ import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
 import { initializeApp } from "firebase/app";
 import { createContext } from "react";
 
+import { getFirestore, getDocs, collection } from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: "AIzaSyARq8iPDaAvq2ZLrYYYyVsw146hbLbpFvg",
   authDomain: "wheres-wally-1fa55.firebaseapp.com",
@@ -14,9 +16,33 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const appContext = createContext();
+
+const characterCoordinateContext = createContext();
+
+const characterCoordinates = {};
 
 function App() {
+  (async () => {
+    const database = getFirestore(app);
+    const beachCharacterQuery = collection(database, "WallyBeachImage");
+    const beachCharacterSnap = await getDocs(beachCharacterQuery);
+    beachCharacterSnap.forEach((doc) => {
+      switch (doc.id) {
+        case "WallyLocation":
+          characterCoordinates[doc.id] = doc.data();
+          break;
+        case "OdlawLocation":
+          characterCoordinates[doc.id] = doc.data();
+          break;
+        case "WizardLocation":
+          characterCoordinates[doc.id] = doc.data();
+          break;
+        default:
+          break;
+      }
+    });
+  })();
+
   const drawWallyImage = (context, image1) => {
     context.drawImage(image1, 0, 0);
   };
@@ -27,17 +53,17 @@ function App() {
     <div className="App">
       <header></header>
       <main>
-        <appContext.Provider value={app}>
+        <characterCoordinateContext.Provider value={characterCoordinates}>
           <GameCanvas
             drawWallyImage={drawWallyImage}
             wallyImage1={wallyImage}
             app={app}
           />
-        </appContext.Provider>
+        </characterCoordinateContext.Provider>
       </main>
     </div>
   );
 }
 
 export default App;
-export { appContext };
+export { characterCoordinateContext };
