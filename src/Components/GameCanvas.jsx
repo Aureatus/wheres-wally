@@ -51,8 +51,8 @@ const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
     return (
       <canvas
         ref={canvasRef}
-        height={768}
-        width={1024}
+        height={1075}
+        width={1434}
         onClick={(event) => {
           setMouseClickLocation(getMouseCoordinates(event));
           setTargetingBoxPresent(true);
@@ -64,8 +64,8 @@ const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
       <>
         <canvas
           ref={canvasRef}
-          height={768}
-          width={1024}
+          height={1075}
+          width={1434}
           onClick={() => {
             setTargetingBoxPresent(false);
           }}

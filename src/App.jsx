@@ -1,5 +1,5 @@
 import GameCanvas from "./Components/GameCanvas";
-import wallyImage1 from "./Assets/wheres-wally-beach.jpg";
+import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
 
 function App() {
   const drawWallyImage = (context, image1) => {
