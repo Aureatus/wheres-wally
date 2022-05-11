@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
+import CharacterSelect from "./CharacterSelect";
 import wallyProfile from "../Assets/wally.jpg";
 import odlawProfile from "../Assets/Odlaw.jpg";
 import wizardProfile from "../Assets/Wizard.jpeg";
@@ -64,27 +64,14 @@ const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
   } else {
     return (
       <>
-        <div
-          className="char-select-div"
-          style={{
-            position: "absolute",
-            left: mouseClickLocation.mouseX - boxWidth / 2 + 50,
-            top: mouseClickLocation.mouseY - boxHeight / 2,
-          }}
-        >
-          <div className="char-select-card" id="wally">
-            <img src={wallyProfile} alt="Wally" height={26} width={26} />
-            <p>Wally</p>
-          </div>
-          <div className="char-select-card" id="waldo">
-            <img src={odlawProfile} alt="Odlaw" height={26} width={26} />
-            <p>Wally</p>
-          </div>
-          <div className="char-select-card" id="wizard">
-            <img src={wizardProfile} alt="Wizard" height={26} width={26} />
-            <p>Wally</p>
-          </div>
-        </div>
+        <CharacterSelect
+          mouseClickLocation={mouseClickLocation}
+          boxWidth={boxWidth}
+          boxHeight={boxHeight}
+          wallyProfile={wallyProfile}
+          odlawProfile={odlawProfile}
+          wizardProfile={wizardProfile}
+        />
         <canvas
           ref={canvasRef}
           height={1075}
