@@ -21,11 +21,11 @@ const CharacterSelect = ({
       </div>
       <div className="char-select-card" id="waldo">
         <img src={odlawProfile} alt="Odlaw" height={26} width={26} />
-        <p>Wally</p>
+        <p>Odlaw</p>
       </div>
       <div className="char-select-card" id="wizard">
         <img src={wizardProfile} alt="Wizard" height={26} width={26} />
-        <p>Wally</p>
+        <p>Wizard</p>
       </div>
     </div>
   );
