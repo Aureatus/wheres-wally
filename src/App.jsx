@@ -44,9 +44,9 @@ function App() {
   })();
 
   const [charactersFound, setCharactersFound] = useState({
-    wally: false,
-    odlaw: false,
-    wizard: false,
+    Wally: false,
+    Odlaw: false,
+    Wizard: false,
   });
 
   const drawWallyImage = (context, image1) => {
