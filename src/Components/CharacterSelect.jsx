@@ -21,22 +21,18 @@ const CharacterSelect = ({
   const checkIfCharacterAtMouseCoords = (character) => {
     const objectKey = character + "Location";
     const selectedCharacterCoordinates = characterCoordinates[objectKey];
-    let xCoordsCorrect = false;
-    let yCoordsCorrect = false;
 
-    if (
+    const xCoordsCorrect =
       mouseClickLocation.mouseX >= selectedCharacterCoordinates.x - 25 &&
       mouseClickLocation.mouseX <= selectedCharacterCoordinates.x + 25
-    ) {
-      xCoordsCorrect = true;
-    }
+        ? true
+        : false;
 
-    if (
+    const yCoordsCorrect =
       mouseClickLocation.mouseY >= selectedCharacterCoordinates.y - 25 &&
       mouseClickLocation.mouseY <= selectedCharacterCoordinates.y + 25
-    ) {
-      yCoordsCorrect = true;
-    }
+        ? true
+        : false;
 
     if (xCoordsCorrect && yCoordsCorrect) {
       return true;
