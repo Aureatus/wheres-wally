@@ -5,7 +5,7 @@ const WizardCard = ({
   setTargetingBoxPresent,
   wizardProfile,
 }) => {
-  if (charactersFound.wizard) {
+  if (charactersFound.Wizard) {
     return (
       <div
         className="char-select-card"
@@ -27,7 +27,7 @@ const WizardCard = ({
         id="wizard"
         onClick={() => {
           if (checkIfCharacterAtMouseCoords("Wizard")) {
-            setCharactersFound({ ...charactersFound, wizard: true });
+            setCharactersFound({ ...charactersFound, Wizard: true });
             setTargetingBoxPresent(false);
           }
         }}

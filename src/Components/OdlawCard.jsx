@@ -5,7 +5,7 @@ const OdlawCard = ({
   setTargetingBoxPresent,
   odlawProfile,
 }) => {
-  if (charactersFound.odlaw) {
+  if (charactersFound.Odlaw) {
     return (
       <div
         className="char-select-card"
@@ -27,7 +27,7 @@ const OdlawCard = ({
         id="odlaw"
         onClick={() => {
           if (checkIfCharacterAtMouseCoords("Odlaw")) {
-            setCharactersFound({ ...charactersFound, odlaw: true });
+            setCharactersFound({ ...charactersFound, Odlaw: true });
             setTargetingBoxPresent(false);
           }
         }}

@@ -5,7 +5,7 @@ const WallyCard = ({
   setTargetingBoxPresent,
   wallyProfile,
 }) => {
-  if (charactersFound.wally) {
+  if (charactersFound.Wally) {
     return (
       <div
         className="char-select-card"
@@ -27,7 +27,7 @@ const WallyCard = ({
         id="wally"
         onClick={() => {
           if (checkIfCharacterAtMouseCoords("Wally")) {
-            setCharactersFound({ ...charactersFound, wally: true });
+            setCharactersFound({ ...charactersFound, Wally: true });
             setTargetingBoxPresent(false);
           }
         }}
