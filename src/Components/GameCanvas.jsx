@@ -4,7 +4,12 @@ import wallyProfile from "../Assets/wally.jpg";
 import odlawProfile from "../Assets/Odlaw.jpg";
 import wizardProfile from "../Assets/Wizard.jpeg";
 
-const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
+const GameCanvas = ({
+  drawWallyImage,
+  wallyImage1,
+  charactersFound,
+  setCharactersFound,
+}) => {
   const canvasRef = useRef(null);
 
   const [mouseClickLocation, setMouseClickLocation] = useState(null);
@@ -71,6 +76,8 @@ const GameCanvas = ({ drawWallyImage, wallyImage1 }) => {
           wallyProfile={wallyProfile}
           odlawProfile={odlawProfile}
           wizardProfile={wizardProfile}
+          charactersFound={charactersFound}
+          setCharactersFound={setCharactersFound}
         />
         <canvas
           ref={canvasRef}

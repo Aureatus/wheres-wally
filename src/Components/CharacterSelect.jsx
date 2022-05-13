@@ -8,6 +8,8 @@ const CharacterSelect = ({
   wallyProfile,
   odlawProfile,
   wizardProfile,
+  charactersFound,
+  setCharactersFound,
 }) => {
   const characterCoordinates = useContext(characterCoordinateContext);
 
@@ -48,7 +50,11 @@ const CharacterSelect = ({
       <div
         className="char-select-card"
         id="wally"
-        onClick={() => checkIfCharacterAtMouseCoords("Wally")}
+        onClick={() => {
+          if (checkIfCharacterAtMouseCoords("Wally")) {
+            setCharactersFound({ ...charactersFound, wally: true });
+          }
+        }}
       >
         <img src={wallyProfile} alt="Wally" height={26} width={26} />
         <p>Wally</p>
@@ -56,7 +62,11 @@ const CharacterSelect = ({
       <div
         className="char-select-card"
         id="waldo"
-        onClick={() => checkIfCharacterAtMouseCoords("Odlaw")}
+        onClick={() => {
+          if (checkIfCharacterAtMouseCoords("Odlaw")) {
+            setCharactersFound({ ...charactersFound, odlaw: true });
+          }
+        }}
       >
         <img src={odlawProfile} alt="Odlaw" height={26} width={26} />
         <p>Odlaw</p>
@@ -64,7 +74,11 @@ const CharacterSelect = ({
       <div
         className="char-select-card"
         id="wizard"
-        onClick={() => checkIfCharacterAtMouseCoords("Wizard")}
+        onClick={() => {
+          if (checkIfCharacterAtMouseCoords("Wizard")) {
+            setCharactersFound({ ...charactersFound, wizard: true });
+          }
+        }}
       >
         <img src={wizardProfile} alt="Wizard" height={26} width={26} />
         <p>Wizard</p>

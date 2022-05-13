@@ -2,7 +2,7 @@ import GameCanvas from "./Components/GameCanvas";
 import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
 
 import { initializeApp } from "firebase/app";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 import { getFirestore, getDocs, collection } from "firebase/firestore";
 
@@ -43,6 +43,12 @@ function App() {
     });
   })();
 
+  const [charactersFound, setCharactersFound] = useState({
+    wally: false,
+    odlaw: false,
+    wizard: false,
+  });
+
   const drawWallyImage = (context, image1) => {
     context.drawImage(image1, 0, 0);
   };
@@ -58,6 +64,8 @@ function App() {
             drawWallyImage={drawWallyImage}
             wallyImage1={wallyImage}
             app={app}
+            charactersFound={charactersFound}
+            setCharactersFound={setCharactersFound}
           />
         </characterCoordinateContext.Provider>
       </main>
