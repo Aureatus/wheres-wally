@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import "../styles/CharacterSelect.css";
 import { characterCoordinateContext } from "../App";
+import WallyCard from "./WallyCard";
+
 const CharacterSelect = ({
   mouseClickLocation,
   boxWidth,
@@ -48,19 +50,13 @@ const CharacterSelect = ({
         top: mouseClickLocation.mouseY - boxHeight / 2 - 50,
       }}
     >
-      <div
-        className="char-select-card"
-        id="wally"
-        onClick={() => {
-          if (checkIfCharacterAtMouseCoords("Wally")) {
-            setCharactersFound({ ...charactersFound, wally: true });
-            setTargetingBoxPresent(false);
-          }
-        }}
-      >
-        <img src={wallyProfile} alt="Wally" height={26} width={26} />
-        <p>Wally</p>
-      </div>
+      <WallyCard
+        checkIfCharacterAtMouseCoords={checkIfCharacterAtMouseCoords}
+        charactersFound={charactersFound}
+        setCharactersFound={setCharactersFound}
+        setTargetingBoxPresent={setTargetingBoxPresent}
+        wallyProfile={wallyProfile}
+      />
       <div
         className="char-select-card"
         id="waldo"
