@@ -10,6 +10,7 @@ const CharacterSelect = ({
   wizardProfile,
   charactersFound,
   setCharactersFound,
+  setTargetingBoxPresent,
 }) => {
   const characterCoordinates = useContext(characterCoordinateContext);
 
@@ -53,6 +54,7 @@ const CharacterSelect = ({
         onClick={() => {
           if (checkIfCharacterAtMouseCoords("Wally")) {
             setCharactersFound({ ...charactersFound, wally: true });
+            setTargetingBoxPresent(false);
           }
         }}
       >
@@ -65,6 +67,7 @@ const CharacterSelect = ({
         onClick={() => {
           if (checkIfCharacterAtMouseCoords("Odlaw")) {
             setCharactersFound({ ...charactersFound, odlaw: true });
+            setTargetingBoxPresent(false);
           }
         }}
       >
@@ -77,6 +80,7 @@ const CharacterSelect = ({
         onClick={() => {
           if (checkIfCharacterAtMouseCoords("Wizard")) {
             setCharactersFound({ ...charactersFound, wizard: true });
+            setTargetingBoxPresent(false);
           }
         }}
       >

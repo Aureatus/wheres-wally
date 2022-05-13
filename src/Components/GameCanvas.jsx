@@ -78,6 +78,7 @@ const GameCanvas = ({
           wizardProfile={wizardProfile}
           charactersFound={charactersFound}
           setCharactersFound={setCharactersFound}
+          setTargetingBoxPresent={setTargetingBoxPresent}
         />
         <canvas
           ref={canvasRef}
