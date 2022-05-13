@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
+import { characterCoordinateContext } from "../App";
 import CharacterSelect from "./CharacterSelect";
 import wallyProfile from "../Assets/wally.jpg";
 import odlawProfile from "../Assets/Odlaw.jpg";
@@ -54,17 +55,43 @@ const GameCanvas = ({
     }
   }, [mouseClickLocation]);
 
+  const characterCoordinates = useContext(characterCoordinateContext);
+
+  let characterMarkers = Object.entries(charactersFound).filter(
+    (e) => e[1] === true
+  );
+
+  characterMarkers = characterMarkers.map((e) => {
+    const objectKey = e[0] + "Location";
+    return (
+      <p
+        key={e[0]}
+        style={{
+          position: "absolute",
+          left: characterCoordinates[objectKey].x,
+          top: characterCoordinates[objectKey].y,
+          marginBlock: "0%",
+        }}
+      >
+        &#x1F44D;
+      </p>
+    );
+  });
+
   if (!targetingBoxPresent) {
     return (
-      <canvas
-        ref={canvasRef}
-        height={1075}
-        width={1434}
-        onClick={(event) => {
-          setMouseClickLocation(getMouseCoordinates(event));
-          setTargetingBoxPresent(true);
-        }}
-      ></canvas>
+      <>
+        <div>{characterMarkers}</div>
+        <canvas
+          ref={canvasRef}
+          height={1075}
+          width={1434}
+          onClick={(event) => {
+            setMouseClickLocation(getMouseCoordinates(event));
+            setTargetingBoxPresent(true);
+          }}
+        ></canvas>
+      </>
     );
   } else {
     return (
@@ -80,6 +107,7 @@ const GameCanvas = ({
           setCharactersFound={setCharactersFound}
           setTargetingBoxPresent={setTargetingBoxPresent}
         />
+        <div>{characterMarkers}</div>
         <canvas
           ref={canvasRef}
           height={1075}
