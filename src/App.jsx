@@ -22,6 +22,18 @@ const characterCoordinateContext = createContext();
 const characterCoordinates = {};
 
 function App() {
+  const [charactersFound, setCharactersFound] = useState({
+    Wally: false,
+    Odlaw: false,
+    Wizard: false,
+  });
+
+  const drawWallyImage = (context, image1) => {
+    context.drawImage(image1, 0, 0);
+  };
+  const wallyImage = new Image();
+  wallyImage.src = wallyImage1;
+
   const fetchCharacterCoords = async () => {
     const database = getFirestore(app);
     const beachCharacterQuery = collection(database, "WallyBeachImage");
@@ -43,18 +55,6 @@ function App() {
     });
   };
   fetchCharacterCoords();
-
-  const [charactersFound, setCharactersFound] = useState({
-    Wally: false,
-    Odlaw: false,
-    Wizard: false,
-  });
-
-  const drawWallyImage = (context, image1) => {
-    context.drawImage(image1, 0, 0);
-  };
-  const wallyImage = new Image();
-  wallyImage.src = wallyImage1;
 
   return (
     <div className="App">
