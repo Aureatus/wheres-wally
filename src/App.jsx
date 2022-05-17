@@ -2,7 +2,7 @@ import GameCanvas from "./Components/GameCanvas";
 import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
 
 import { initializeApp } from "firebase/app";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { getFirestore, getDocs, collection } from "firebase/firestore";
 
@@ -55,6 +55,12 @@ function App() {
     });
   };
   fetchCharacterCoords();
+
+  useEffect(() => {
+    if (Object.values(charactersFound).every((value) => value === true)) {
+      console.log("Finished!");
+    }
+  }, [charactersFound]);
 
   return (
     <div className="App">
