@@ -14,16 +14,17 @@ const GameCanvas = ({
   const canvasRef = useRef(null);
 
   const [mouseClickLocation, setMouseClickLocation] = useState(null);
+  const [targetingBoxPresent, setTargetingBoxPresent] = useState(false);
+
+  const boxWidth = 50;
+  const boxHeight = 50;
+  const characterCoordinates = useContext(characterCoordinateContext);
 
   const getMouseCoordinates = (event) => {
     const mouseX = event.nativeEvent.clientX;
     const mouseY = event.nativeEvent.clientY;
     return { mouseX, mouseY };
   };
-
-  const [targetingBoxPresent, setTargetingBoxPresent] = useState(false);
-  const boxWidth = 50;
-  const boxHeight = 50;
 
   const drawTargetBox = ({ mouseClickLocation }, context) => {
     const { mouseX, mouseY } = mouseClickLocation;
@@ -54,8 +55,6 @@ const GameCanvas = ({
       drawTargetBox({ mouseClickLocation }, context);
     }
   }, [mouseClickLocation]);
-
-  const characterCoordinates = useContext(characterCoordinateContext);
 
   let characterMarkers = Object.entries(charactersFound).filter(
     (e) => e[1] === true
