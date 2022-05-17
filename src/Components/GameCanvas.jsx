@@ -19,7 +19,6 @@ const GameCanvas = ({
   const boxWidth = 50;
   const boxHeight = 50;
   const characterCoordinates = useContext(characterCoordinateContext);
-  let characterMarkers = null;
 
   const generateCharacterMarkerElements = (charactersFound) => {
     // Filter out characters that have not been found
@@ -46,9 +45,6 @@ const GameCanvas = ({
 
     return elementArray;
   };
-
-  characterMarkers = generateCharacterMarkerElements(charactersFound);
-
   const getMouseCoordinates = (event) => {
     const mouseX = event.nativeEvent.clientX;
     const mouseY = event.nativeEvent.clientY;
@@ -84,6 +80,8 @@ const GameCanvas = ({
       drawTargetBox({ mouseClickLocation }, context);
     }
   }, [mouseClickLocation]);
+
+  const characterMarkers = generateCharacterMarkerElements(charactersFound);
 
   if (!targetingBoxPresent) {
     return (
