@@ -58,7 +58,6 @@ function App() {
 
   return (
     <div className="App">
-      <header></header>
       <main>
         <characterCoordinateContext.Provider value={characterCoordinates}>
           <GameCanvas
