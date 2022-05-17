@@ -22,7 +22,7 @@ const characterCoordinateContext = createContext();
 const characterCoordinates = {};
 
 function App() {
-  (async () => {
+  const fetchCharacterCoords = async () => {
     const database = getFirestore(app);
     const beachCharacterQuery = collection(database, "WallyBeachImage");
     const beachCharacterSnap = await getDocs(beachCharacterQuery);
@@ -41,7 +41,8 @@ function App() {
           break;
       }
     });
-  })();
+  };
+  fetchCharacterCoords();
 
   const [charactersFound, setCharactersFound] = useState({
     Wally: false,
