@@ -19,6 +19,35 @@ const GameCanvas = ({
   const boxWidth = 50;
   const boxHeight = 50;
   const characterCoordinates = useContext(characterCoordinateContext);
+  let characterMarkers = null;
+
+  const generateCharacterMarkerElements = (charactersFound) => {
+    // Filter out characters that have not been found
+    let trueCharactersFound = Object.entries(charactersFound).filter(
+      (e) => e[1] === true
+    );
+    // Return element for each character found, positioned on the characters head.
+    const elementArray = trueCharactersFound.map((element) => {
+      const objectKey = element[0] + "Location";
+      return (
+        <p
+          key={element[0]}
+          style={{
+            position: "absolute",
+            left: characterCoordinates[objectKey].x,
+            top: characterCoordinates[objectKey].y,
+            marginBlock: "0%",
+          }}
+        >
+          &#x1F44D;
+        </p>
+      );
+    });
+
+    return elementArray;
+  };
+
+  characterMarkers = generateCharacterMarkerElements(charactersFound);
 
   const getMouseCoordinates = (event) => {
     const mouseX = event.nativeEvent.clientX;
@@ -55,27 +84,6 @@ const GameCanvas = ({
       drawTargetBox({ mouseClickLocation }, context);
     }
   }, [mouseClickLocation]);
-
-  let characterMarkers = Object.entries(charactersFound).filter(
-    (e) => e[1] === true
-  );
-
-  characterMarkers = characterMarkers.map((e) => {
-    const objectKey = e[0] + "Location";
-    return (
-      <p
-        key={e[0]}
-        style={{
-          position: "absolute",
-          left: characterCoordinates[objectKey].x,
-          top: characterCoordinates[objectKey].y,
-          marginBlock: "0%",
-        }}
-      >
-        &#x1F44D;
-      </p>
-    );
-  });
 
   if (!targetingBoxPresent) {
     return (
