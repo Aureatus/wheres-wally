@@ -2,7 +2,7 @@ import GameCanvas from "./Components/GameCanvas";
 import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
 
 import { initializeApp } from "firebase/app";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 
 import { getFirestore, getDocs, collection } from "firebase/firestore";
 
@@ -29,6 +29,10 @@ function App() {
   });
 
   const [gameFinished, setGameFinished] = useState(false);
+  const [score, setScore] = useState(null);
+
+  const startTime = useRef(Date.now());
+  const finishTime = useRef(Date.now());
 
   const drawWallyImage = (context, image1) => {
     context.drawImage(image1, 0, 0);
@@ -76,9 +80,17 @@ function App() {
 
   useEffect(() => {
     if (Object.values(charactersFound).every((value) => value === true)) {
+      finishTime.current = Date.now();
       setGameFinished(true);
     }
   }, [charactersFound]);
+
+  useEffect(() => {
+    if (gameFinished) {
+      const score = (finishTime.current - startTime.current) / 1000;
+      setScore(score);
+    }
+  }, [gameFinished, startTime, finishTime]);
 
   return (
     <div className="App">
