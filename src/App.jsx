@@ -30,6 +30,7 @@ function App() {
 
   const [gameFinished, setGameFinished] = useState(false);
   const [score, setScore] = useState(null);
+  const [playerScores, setPlayerScores] = useState(null);
 
   const startTime = useRef(Date.now());
   const finishTime = useRef(Date.now());
@@ -61,22 +62,23 @@ function App() {
     });
   };
 
-  const playerScores = {};
-
-  const fetchPlayerScores = async () => {
+  const fetchPlayerScores = async (playerScores) => {
     const database = getFirestore(app);
     const scoresQuery = collection(database, "scores");
     const scoresSnap = await getDocs(scoresQuery);
+    const tempScores = {};
     scoresSnap.forEach((score) => {
-      if (Object.keys(playerScores).length < 10) {
-        playerScores[score.id] = score.data();
+      if (Object.keys(tempScores).length < 10) {
+        tempScores[score.id] = score.data();
       }
     });
+    return tempScores;
   };
-
-  fetchPlayerScores();
-
   fetchCharacterCoords();
+
+  useEffect(() => {
+    setPlayerScores(fetchPlayerScores());
+  }, []);
 
   useEffect(() => {
     if (Object.values(charactersFound).every((value) => value === true)) {
