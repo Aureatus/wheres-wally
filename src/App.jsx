@@ -94,6 +94,29 @@ function App() {
     }
   }, [gameFinished, startTime, finishTime]);
 
+  if (gameFinished) {
+    return (
+      <>
+        <div className="App">
+          <main>
+            <dialog open>
+              <div>Your time is {Math.round(score * 10) / 10} seconds!</div>
+            </dialog>
+            <characterCoordinateContext.Provider value={characterCoordinates}>
+              <GameCanvas
+                drawWallyImage={drawWallyImage}
+                wallyImage1={wallyImage}
+                app={app}
+                charactersFound={charactersFound}
+                setCharactersFound={setCharactersFound}
+              />
+            </characterCoordinateContext.Provider>
+          </main>
+        </div>
+      </>
+    );
+  }
+
   return (
     <div className="App">
       <main>
