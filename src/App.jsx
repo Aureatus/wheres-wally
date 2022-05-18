@@ -28,6 +28,8 @@ function App() {
     Wizard: false,
   });
 
+  const [gameFinished, setGameFinished] = useState(false);
+
   const drawWallyImage = (context, image1) => {
     context.drawImage(image1, 0, 0);
   };
@@ -74,7 +76,7 @@ function App() {
 
   useEffect(() => {
     if (Object.values(charactersFound).every((value) => value === true)) {
-      console.log("Finished!");
+      setGameFinished(true);
     }
   }, [charactersFound]);
 
