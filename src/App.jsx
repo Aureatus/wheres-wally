@@ -54,6 +54,22 @@ function App() {
       }
     });
   };
+
+  const playerScores = {};
+
+  const fetchPlayerScores = async () => {
+    const database = getFirestore(app);
+    const scoresQuery = collection(database, "scores");
+    const scoresSnap = await getDocs(scoresQuery);
+    scoresSnap.forEach((score) => {
+      if (Object.keys(playerScores).length < 10) {
+        playerScores[score.id] = score.data();
+      }
+    });
+  };
+
+  fetchPlayerScores();
+
   fetchCharacterCoords();
 
   useEffect(() => {
