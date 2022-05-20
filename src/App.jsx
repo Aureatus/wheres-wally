@@ -1,4 +1,5 @@
 import GameCanvas from "./Components/GameCanvas";
+import GameEndDialog from "./Components/GameEndDialog";
 import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
 
 import { initializeApp } from "firebase/app";
@@ -74,6 +75,20 @@ function App() {
     });
     return tempScores;
   };
+
+  const checkScore = async () => {
+    if (await playerScores) {
+      if (score) {
+        if (
+          Object.values(await playerScores).some((e) => e.time > score) ||
+          Object.values.length < 10
+        ) {
+          return true;
+        }
+      }
+    }
+  };
+
   fetchCharacterCoords();
 
   useEffect(() => {
@@ -95,43 +110,43 @@ function App() {
   }, [gameFinished, startTime, finishTime]);
 
   if (gameFinished) {
+    if (score) {
+      return (
+        <>
+          <div className="App">
+            <main>
+              <GameEndDialog score={score} checkScore={checkScore} />
+              <characterCoordinateContext.Provider value={characterCoordinates}>
+                <GameCanvas
+                  drawWallyImage={drawWallyImage}
+                  wallyImage1={wallyImage}
+                  app={app}
+                  charactersFound={charactersFound}
+                  setCharactersFound={setCharactersFound}
+                />
+              </characterCoordinateContext.Provider>
+            </main>
+          </div>
+        </>
+      );
+    }
+  } else {
     return (
-      <>
-        <div className="App">
-          <main>
-            <dialog open>
-              <div>Your time is {Math.round(score * 10) / 10} seconds!</div>
-            </dialog>
-            <characterCoordinateContext.Provider value={characterCoordinates}>
-              <GameCanvas
-                drawWallyImage={drawWallyImage}
-                wallyImage1={wallyImage}
-                app={app}
-                charactersFound={charactersFound}
-                setCharactersFound={setCharactersFound}
-              />
-            </characterCoordinateContext.Provider>
-          </main>
-        </div>
-      </>
+      <div className="App">
+        <main>
+          <characterCoordinateContext.Provider value={characterCoordinates}>
+            <GameCanvas
+              drawWallyImage={drawWallyImage}
+              wallyImage1={wallyImage}
+              app={app}
+              charactersFound={charactersFound}
+              setCharactersFound={setCharactersFound}
+            />
+          </characterCoordinateContext.Provider>
+        </main>
+      </div>
     );
   }
-
-  return (
-    <div className="App">
-      <main>
-        <characterCoordinateContext.Provider value={characterCoordinates}>
-          <GameCanvas
-            drawWallyImage={drawWallyImage}
-            wallyImage1={wallyImage}
-            app={app}
-            charactersFound={charactersFound}
-            setCharactersFound={setCharactersFound}
-          />
-        </characterCoordinateContext.Provider>
-      </main>
-    </div>
-  );
 }
 
 export default App;
