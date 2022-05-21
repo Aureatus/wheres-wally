@@ -1,6 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 
-const GameEndDialog = ({ score, checkScore, addScoreToFirestore }) => {
+const GameEndDialog = ({
+  score,
+  checkScore,
+  addScoreToFirestore,
+  resetGameState,
+}) => {
   const [dialogElement, setDialogElement] = useState(null);
 
   const nameInput = useRef(null);
@@ -15,6 +20,7 @@ const GameEndDialog = ({ score, checkScore, addScoreToFirestore }) => {
               e.preventDefault();
               const playerName = nameInput.current.value;
               addScoreToFirestore(playerName, Math.round((score * 10) / 10));
+              resetGameState();
             }}
           >
             <label htmlFor="nameInput">

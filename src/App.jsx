@@ -101,6 +101,19 @@ function App() {
     await setDoc(doc(scoresQuery, playerName), { time: time });
   };
 
+  const resetGameState = () => {
+    setGameFinished(false);
+    setScore(null);
+    setPlayerScores(null);
+    setCharactersFound({
+      Wally: false,
+      Odlaw: false,
+      Wizard: false,
+    });
+    setPlayerScores(fetchPlayerScores());
+    startTime.current = Date.now();
+  };
+
   fetchCharacterCoords();
 
   useEffect(() => {
@@ -132,6 +145,7 @@ function App() {
                 checkScore={checkScore}
                 addScoreToFirestore={addScoreToFirestore}
                 setGameFinished={setGameFinished}
+                resetGameState={resetGameState}
               />
               <characterCoordinateContext.Provider value={characterCoordinates}>
                 <GameCanvas
