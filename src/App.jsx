@@ -5,7 +5,13 @@ import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
 import { initializeApp } from "firebase/app";
 import { createContext, useEffect, useRef, useState } from "react";
 
-import { getFirestore, getDocs, collection } from "firebase/firestore";
+import {
+  getFirestore,
+  getDocs,
+  collection,
+  setDoc,
+  doc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyARq8iPDaAvq2ZLrYYYyVsw146hbLbpFvg",
@@ -89,6 +95,12 @@ function App() {
     }
   };
 
+  const addScoreToFirestore = async (playerName, time) => {
+    const database = getFirestore(app);
+    const scoresQuery = collection(database, "scores");
+    await setDoc(doc(scoresQuery, playerName), { time: time });
+  };
+
   fetchCharacterCoords();
 
   useEffect(() => {
@@ -115,7 +127,12 @@ function App() {
         <>
           <div className="App">
             <main>
-              <GameEndDialog score={score} checkScore={checkScore} />
+              <GameEndDialog
+                score={score}
+                checkScore={checkScore}
+                addScoreToFirestore={addScoreToFirestore}
+                setGameFinished={setGameFinished}
+              />
               <characterCoordinateContext.Provider value={characterCoordinates}>
                 <GameCanvas
                   drawWallyImage={drawWallyImage}
