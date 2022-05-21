@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-const GameEndDialog = ({ score, checkScore }) => {
+const GameEndDialog = ({ score, checkScore, addScoreToFirestore }) => {
   const [dialogElement, setDialogElement] = useState(null);
+
+  const nameInput = useRef(null);
 
   const dialogElementGenerator = async (checkScore) => {
     if (await checkScore()) {
@@ -11,13 +13,15 @@ const GameEndDialog = ({ score, checkScore }) => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              const playerName = nameInput.current.value;
+              addScoreToFirestore(playerName, Math.round((score * 10) / 10));
             }}
           >
             <label htmlFor="nameInput">
               Please enter your name if you wish to be entered into the
               leaderboard!
             </label>
-            <input type="text" id="nameInput" />
+            <input type="text" id="nameInput" ref={nameInput} />
             <input type="submit" />
           </form>
         </dialog>
