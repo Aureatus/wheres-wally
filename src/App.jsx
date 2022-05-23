@@ -11,6 +11,8 @@ import {
   collection,
   setDoc,
   doc,
+  query,
+  orderBy,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -71,7 +73,10 @@ function App() {
 
   const fetchPlayerScores = async (playerScores) => {
     const database = getFirestore(app);
-    const scoresQuery = collection(database, "scores");
+    const scoresQuery = query(
+      collection(database, "scores"),
+      orderBy("time", "asc")
+    );
     const scoresSnap = await getDocs(scoresQuery);
     const tempScores = {};
     scoresSnap.forEach((score) => {
@@ -87,7 +92,7 @@ function App() {
       if (score) {
         if (
           Object.values(await playerScores).some((e) => e.time > score) ||
-          Object.values.length < 10
+          Object.values(await playerScores).length < 10
         ) {
           return true;
         }
