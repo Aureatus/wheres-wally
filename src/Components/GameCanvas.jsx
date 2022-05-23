@@ -10,6 +10,7 @@ const GameCanvas = ({
   wallyImage1,
   charactersFound,
   setCharactersFound,
+  gameFinished,
 }) => {
   const canvasRef = useRef(null);
 
@@ -84,6 +85,21 @@ const GameCanvas = ({
   const characterMarkers = generateCharacterMarkerElements(charactersFound);
 
   if (!targetingBoxPresent) {
+    if (gameFinished) {
+      return (
+        <>
+          <canvas
+            ref={canvasRef}
+            height={1075}
+            width={1434}
+            onClick={(event) => {
+              setMouseClickLocation(getMouseCoordinates(event));
+              setTargetingBoxPresent(true);
+            }}
+          ></canvas>
+        </>
+      );
+    }
     return (
       <>
         <div>{characterMarkers}</div>

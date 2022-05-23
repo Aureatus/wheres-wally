@@ -159,6 +159,7 @@ function App() {
                   app={app}
                   charactersFound={charactersFound}
                   setCharactersFound={setCharactersFound}
+                  gameFinished={gameFinished}
                 />
               </characterCoordinateContext.Provider>
             </main>
