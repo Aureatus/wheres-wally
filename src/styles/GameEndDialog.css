@@ -1,0 +1,73 @@
+dialog {
+  height: 100%;
+  width: 100%;
+
+  margin: 0%;
+  padding: 0%;
+
+  box-sizing: border-box;
+
+  border: none;
+  box-shadow: inset 1px 1px 10px 0px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  row-gap: 3%;
+}
+
+p.scoreText {
+  font-family: "Courier New", Courier, monospace;
+  font-size: calc(1rem + 1.5vw);
+
+  margin: 0%;
+  padding: 0%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  row-gap: 10px;
+}
+
+label {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: calc(1rem + 0.5vw);
+
+  margin: 0%;
+  padding: 0%;
+}
+
+input[type="text"] {
+  border: black solid 1px;
+  border-radius: 3px;
+  background-color: white;
+
+  padding: 3px 8px;
+}
+
+input[type="submit"] {
+  border: black solid 1px;
+  border-radius: 2px;
+  box-shadow: 0.5px 0.5px 2px 0px;
+  background-color: white;
+
+  padding: 5px 10px;
+
+  cursor: pointer;
+}
+
+button {
+  border: black solid 1px;
+  box-shadow: 1px 1px 5px 0px;
+  background-color: white;
+
+  padding: 10px 20px;
+
+  cursor: pointer;
+}
