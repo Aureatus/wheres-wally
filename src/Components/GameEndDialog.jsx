@@ -31,7 +31,7 @@ const GameEndDialog = ({
               Please enter your name if you wish to be entered into the
               leaderboard!
             </label>
-            <input type="text" id="nameInput" ref={nameInput} />
+            <input type="text" id="nameInput" ref={nameInput} required />
             <input type="submit" />
           </form>
         </dialog>
