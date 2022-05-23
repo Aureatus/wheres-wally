@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
+import "../styles/GameEndDialog.css";
+
 const GameEndDialog = ({
   score,
   checkScore,
@@ -14,7 +16,9 @@ const GameEndDialog = ({
     if (await checkScore()) {
       setDialogElement(
         <dialog open>
-          <div>Your time is {Math.round(score * 10) / 10} seconds!</div>
+          <p className="scoreText">
+            Your time is {Math.round(score * 10) / 10} seconds!
+          </p>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -35,7 +39,9 @@ const GameEndDialog = ({
     } else {
       setDialogElement(
         <dialog open>
-          <p>Your time is {Math.round(score * 10) / 10} seconds!</p>
+          <p className="scoreText">
+            Your time is {Math.round(score * 10) / 10} seconds!
+          </p>
           <button
             onClick={(e) => {
               e.preventDefault();
