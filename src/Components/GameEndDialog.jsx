@@ -35,7 +35,15 @@ const GameEndDialog = ({
     } else {
       setDialogElement(
         <dialog open>
-          <div>Your time is {Math.round(score * 10) / 10} seconds!</div>
+          <p>Your time is {Math.round(score * 10) / 10} seconds!</p>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              resetGameState();
+            }}
+          >
+            Play again!
+          </button>
         </dialog>
       );
     }
