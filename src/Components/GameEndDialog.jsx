@@ -23,16 +23,20 @@ const GameEndDialog = ({
             onSubmit={(e) => {
               e.preventDefault();
               const playerName = nameInput.current.value;
-              addScoreToFirestore(playerName, Math.round((score * 10) / 10));
-              resetGameState();
+              if (playerName.length <= 0) {
+                resetGameState();
+              } else {
+                addScoreToFirestore(playerName, Math.round((score * 10) / 10));
+                resetGameState();
+              }
             }}
           >
             <label htmlFor="nameInput">
               Please enter your name if you wish to be entered into the
               leaderboard!
             </label>
-            <input type="text" id="nameInput" ref={nameInput} required />
-            <input type="submit" />
+            <input type="text" id="nameInput" ref={nameInput} />
+            <input type="submit" value={"Play again"} />
           </form>
         </dialog>
       );
