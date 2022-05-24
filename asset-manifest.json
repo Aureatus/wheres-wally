@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/wheres-wally/static/css/main.b1fba57c.css",
+    "main.js": "/wheres-wally/static/js/main.4f965474.js",
+    "static/media/wheres-wally-beach-scaled.jpg": "/wheres-wally/static/media/wheres-wally-beach-scaled.a6ef823c028318cf1984.jpg",
+    "static/media/wally.jpg": "/wheres-wally/static/media/wally.1e2ee91f0cfa0ceeb550.jpg",
+    "static/media/Odlaw.jpg": "/wheres-wally/static/media/Odlaw.f34b5260e086e9e07982.jpg",
+    "index.html": "/wheres-wally/index.html",
+    "main.b1fba57c.css.map": "/wheres-wally/static/css/main.b1fba57c.css.map",
+    "main.4f965474.js.map": "/wheres-wally/static/js/main.4f965474.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1fba57c.css",
+    "static/js/main.4f965474.js"
+  ]
+}

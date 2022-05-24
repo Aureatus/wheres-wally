@@ -1,0 +1,8 @@
+{
+  "short_name": "Wheres wally",
+  "name": "Wheres wally game",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
