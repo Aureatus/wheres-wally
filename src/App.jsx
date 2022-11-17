@@ -1,12 +1,5 @@
-import GameCanvas from "./Components/GameCanvas";
-import GameEndDialog from "./Components/GameEndDialog";
-import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
-
-import { initializeApp } from "firebase/app";
 import { createContext, useEffect, useRef, useState } from "react";
-
 import {
-  getFirestore,
   getDocs,
   collection,
   setDoc,
@@ -14,17 +7,10 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyARq8iPDaAvq2ZLrYYYyVsw146hbLbpFvg",
-  authDomain: "wheres-wally-1fa55.firebaseapp.com",
-  projectId: "wheres-wally-1fa55",
-  storageBucket: "wheres-wally-1fa55.appspot.com",
-  messagingSenderId: "907449387792",
-  appId: "1:907449387792:web:01b104d7f66e4c38363395",
-};
-
-const app = initializeApp(firebaseConfig);
+import GameCanvas from "./Components/GameCanvas";
+import GameEndDialog from "./Components/GameEndDialog";
+import wallyImage1 from "./Assets/wheres-wally-beach-scaled.jpg";
+import db from "./firebase/firestore";
 
 const characterCoordinateContext = createContext();
 
@@ -51,8 +37,7 @@ function App() {
   wallyImage.src = wallyImage1;
 
   const fetchCharacterCoords = async () => {
-    const database = getFirestore(app);
-    const beachCharacterQuery = collection(database, "WallyBeachImage");
+    const beachCharacterQuery = collection(db, "WallyBeachImage");
     const beachCharacterSnap = await getDocs(beachCharacterQuery);
     beachCharacterSnap.forEach((doc) => {
       switch (doc.id) {
@@ -72,11 +57,7 @@ function App() {
   };
 
   const fetchPlayerScores = async (playerScores) => {
-    const database = getFirestore(app);
-    const scoresQuery = query(
-      collection(database, "scores"),
-      orderBy("time", "asc")
-    );
+    const scoresQuery = query(collection(db, "scores"), orderBy("time", "asc"));
     const scoresSnap = await getDocs(scoresQuery);
     const tempScores = {};
     scoresSnap.forEach((score) => {
@@ -101,9 +82,8 @@ function App() {
   };
 
   const addScoreToFirestore = async (playerName, time) => {
-    const database = getFirestore(app);
-    const scoresQuery = collection(database, "scores");
-    await setDoc(doc(scoresQuery, playerName), { time: time });
+    const scoresQuery = collection(db, "scores");
+    await setDoc(doc(scoresQuery, playerName), { time });
   };
 
   const resetGameState = () => {
@@ -142,29 +122,26 @@ function App() {
   if (gameFinished) {
     if (score) {
       return (
-        <>
-          <div className="App">
-            <main>
-              <GameEndDialog
-                score={score}
-                checkScore={checkScore}
-                addScoreToFirestore={addScoreToFirestore}
-                setGameFinished={setGameFinished}
-                resetGameState={resetGameState}
+        <div className="App">
+          <main>
+            <GameEndDialog
+              score={score}
+              checkScore={checkScore}
+              addScoreToFirestore={addScoreToFirestore}
+              setGameFinished={setGameFinished}
+              resetGameState={resetGameState}
+            />
+            <characterCoordinateContext.Provider value={characterCoordinates}>
+              <GameCanvas
+                drawWallyImage={drawWallyImage}
+                wallyImage1={wallyImage}
+                charactersFound={charactersFound}
+                setCharactersFound={setCharactersFound}
+                gameFinished={gameFinished}
               />
-              <characterCoordinateContext.Provider value={characterCoordinates}>
-                <GameCanvas
-                  drawWallyImage={drawWallyImage}
-                  wallyImage1={wallyImage}
-                  app={app}
-                  charactersFound={charactersFound}
-                  setCharactersFound={setCharactersFound}
-                  gameFinished={gameFinished}
-                />
-              </characterCoordinateContext.Provider>
-            </main>
-          </div>
-        </>
+            </characterCoordinateContext.Provider>
+          </main>
+        </div>
       );
     }
   } else {
@@ -175,7 +152,6 @@ function App() {
             <GameCanvas
               drawWallyImage={drawWallyImage}
               wallyImage1={wallyImage}
-              app={app}
               charactersFound={charactersFound}
               setCharactersFound={setCharactersFound}
             />
